@@ -1,0 +1,8 @@
+PyMuPDF
+bert-extractive-summarizer
+transformers
+torch
+sentence-transformers
+pytesseract
+Pillow
+scikit-learn
