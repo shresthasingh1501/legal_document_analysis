@@ -45,15 +45,17 @@ def recursive_summarize(text, chunk_size=300, min_length=30):
     combined_summary = ' '.join(summaries)
     return recursive_summarize(combined_summary, chunk_size, min_length)
 
-def extract_named_entities(text):
-    ner_results = ner_pipeline(text)
+def extract_named_entities(text, chunk_size=256):
+    chunks = chunk_text(text, chunk_size)
+    entities = {'PER': set(), 'ORG': set(), 'LOC': set()}
     
-    entities = {'PER': set(), 'ORG': set(), 'LOC': set(), 'MISC': set()}
-    for result in ner_results:
-        entity_type = result['entity'].split('-')[-1]
-        entity_value = result['word'].replace('##', '')
-        if entity_type in entities:
-            entities[entity_type].add(entity_value)
+    for chunk in chunks:
+        ner_results = ner_pipeline(chunk)
+        for result in ner_results:
+            entity_type = result['entity'].split('-')[-1]
+            if entity_type in entities:
+                entity_value = result['word'].replace('##', '')
+                entities[entity_type].add(entity_value)
     
     return entities
 
@@ -75,13 +77,15 @@ def process_directory(directory_path):
         if filename.endswith(".pdf"):
             pdf_path = os.path.join(directory_path, filename)
             summary, entities = process_legal_document(pdf_path)
-            entities_str = {key: ', '.join(values) for key, values in entities.items()}
-            output_data.append([filename, summary, entities_str])
+            persons = ', '.join(entities['PER'])
+            organizations = ', '.join(entities['ORG'])
+            locations = ', '.join(entities['LOC'])
+            output_data.append([filename, summary, persons, organizations, locations])
     
     output_csv = os.path.join(directory_path, "legal_document_analysis.csv")
     with open(output_csv, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        writer.writerow(["File name", "File Summary", "File Entities"])
+        writer.writerow(["File name", "File Summary", "Persons of Interest", "Organizations of Interest", "Locations of Interest"])
         for data in output_data:
             writer.writerow(data)
     
@@ -91,3 +95,4 @@ def process_directory(directory_path):
 if __name__ == "__main__":
     directory_path = input("Enter the path to the directory containing legal PDF files: ")
     process_directory(directory_path)
+
