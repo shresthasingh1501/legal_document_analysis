@@ -6,3 +6,4 @@ sentence-transformers
 pytesseract
 Pillow
 scikit-learn
+streamlit
