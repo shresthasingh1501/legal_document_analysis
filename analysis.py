@@ -28,21 +28,21 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 def summarize_text(text, min_length=30):
-    return summarizer(text, max_length=max_length, min_length=min_length, do_sample=False)[0]['summary_text']
+    return summarizer(text, min_length=min_length, do_sample=False)[0]['summary_text']
 
 def chunk_text(text, chunk_size=512):
     words = text.split()
     chunks = [' '.join(words[i:i+chunk_size]) for i in range(0, len(words), chunk_size)]
     return chunks
 
-def recursive_summarize(text, chunk_size=300, max_length=512, min_length=30):
+def recursive_summarize(text, chunk_size=300, min_length=30):
     if len(text.split()) <= chunk_size:
-        return summarize_text(text, max_length, min_length)
+        return summarize_text(text, min_length)
 
     chunks = chunk_text(text, chunk_size)
-    summaries = [summarize_text(chunk, max_length, min_length) for chunk in chunks]
+    summaries = [summarize_text(chunk, min_length) for chunk in chunks]
     combined_summary = ' '.join(summaries)
-    return recursive_summarize(combined_summary, chunk_size, max_length, min_length)
+    return recursive_summarize(combined_summary, chunk_size, min_length)
 
 def extract_named_entities(text):
     ner_results = ner_pipeline(text)
