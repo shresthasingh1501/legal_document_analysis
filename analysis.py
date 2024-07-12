@@ -27,7 +27,7 @@ def extract_text_from_pdf(pdf_path):
         text += page_text
     return text
 
-def summarize_text(text, max_length=512, min_length=30):
+def summarize_text(text, min_length=30):
     return summarizer(text, max_length=max_length, min_length=min_length, do_sample=False)[0]['summary_text']
 
 def chunk_text(text, chunk_size=512):
