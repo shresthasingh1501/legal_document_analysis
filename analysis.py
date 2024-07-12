@@ -1,5 +1,6 @@
 import os
 import fitz  # PyMuPDF
+import csv
 from transformers import pipeline, AutoTokenizer, AutoModelForSeq2SeqLM, AutoModelForTokenClassification
 import warnings
 from sklearn.exceptions import ConvergenceWarning
@@ -66,26 +67,27 @@ def process_legal_document(pdf_path):
     # Extract named entities
     entities = extract_named_entities(text)
     
-    # Create output folder
-    output_folder = "legal_document_analysis"
-    os.makedirs(output_folder, exist_ok=True)
+    return summary, entities
+
+def process_directory(directory_path):
+    output_data = []
+    for filename in os.listdir(directory_path):
+        if filename.endswith(".pdf"):
+            pdf_path = os.path.join(directory_path, filename)
+            summary, entities = process_legal_document(pdf_path)
+            entities_str = {key: ', '.join(values) for key, values in entities.items()}
+            output_data.append([filename, summary, entities_str])
     
-    # Get the base name of the PDF file without extension
-    pdf_base_name = os.path.splitext(os.path.basename(pdf_path))[0]
+    output_csv = os.path.join(directory_path, "legal_document_analysis.csv")
+    with open(output_csv, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(["File name", "File Summary", "File Entities"])
+        for data in output_data:
+            writer.writerow(data)
     
-    # Save results to a text file with the same name as the PDF
-    output_file = os.path.join(output_folder, f"{pdf_base_name}_analysis.txt")
-    with open(output_file, "w", encoding="utf-8") as f:
-        f.write("Summary:\n")
-        f.write(summary)
-        f.write("\n\nNamed Entities:\n")
-        for entity_type, entity_values in entities.items():
-            f.write(f"{entity_type}: {', '.join(entity_values)}\n")
-    
-    return output_file
+    print(f"\nAnalysis results have been saved to: {os.path.abspath(output_csv)}")
 
 # Main execution
 if __name__ == "__main__":
-    pdf_path = input("Enter the path to the legal PDF file: ")
-    output_file = process_legal_document(pdf_path)
-    print(f"\nAnalysis results have been saved to: {os.path.abspath(output_file)}")
+    directory_path = input("Enter the path to the directory containing legal PDF files: ")
+    process_directory(directory_path)
