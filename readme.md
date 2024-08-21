@@ -1,5 +1,21 @@
 # Legal Document Analysis - Unleashing the Power of AI on Legal Text
 
+## Workflow
+
+Here's a visual representation of the workflow:
+
+```mermaid
+graph LR
+A[Input PDF Document] --> B(Text Extraction)
+B --> C{OCR}
+C --> D(Text Preprocessing)
+D --> E{Summarization Flan-T5}
+D --> F{Named Entity Recognition BERT}
+E --> G[Summary Output]
+F --> H[Named Entities Output]
+
+```
+
 ## Dive into the World of Automated Legal Insights!
 
 This repository empowers you to effortlessly analyze legal documents using the cutting-edge capabilities of Natural Language Processing (NLP).  Say goodbye to tedious manual reviews and unlock valuable insights hidden within complex legal text.
@@ -58,21 +74,6 @@ This repository empowers you to effortlessly analyze legal documents using the c
 * **`samplepdfs/`:**  A directory to store your sample PDF files.
 * **`streamlit-ui.py`:** (Optional) A Streamlit-based UI for interactive analysis (implementation in progress).
 
-## Workflow
-
-Here's a visual representation of the workflow:
-
-```mermaid
-graph LR
-A[Input PDF Document] --> B(Text Extraction)
-B --> C{OCR}
-C --> D(Text Preprocessing)
-D --> E{Summarization Flan-T5}
-D --> F{Named Entity Recognition BERT}
-E --> G[Summary Output]
-F --> H[Named Entities Output]
-
-```
 
 
 ## Unleash the Power of AI on Your Legal Documents Today!
