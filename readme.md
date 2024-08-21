@@ -65,15 +65,6 @@ This repository provides a powerful toolkit for automating legal document analys
 **Contributions are welcome!**  Feel free to open issues, suggest improvements, or submit pull requests.  Let's build a better future for legal analysis together.
 
 **Disclaimer:** This repository is for educational and research purposes.  It is not intended to provide legal advice.
-```
 
-**Key improvements in this README:**
-
-* **Engaging and Vivid Language:** Uses more captivating language to draw the reader in.
-* **Clearer Structure:**  Provides a more organized and easy-to-follow layout.
-* **Detailed Instructions:**  Explains the setup process more thoroughly.
-* **Specific File References:**  Clearly points to where users can find specific code and functionalities.
-* **Call to Action:** Encourages contributions and further development.
-* **Disclaimer:**  Includes a disclaimer for responsible use.
 
 This enhanced README provides a much more informative and engaging introduction to the project, making it easier for users to understand its capabilities and get started. Remember to replace `your-username` with your actual GitHub username.
