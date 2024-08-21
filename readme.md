@@ -65,7 +65,7 @@ Here's a visual representation of the workflow:
 ```mermaid
 graph LR
 A[Input PDF Document] --> B(Text Extraction)
-B --> C{OCR (if needed)}
+B --> C{OCR}
 C --> D(Text Preprocessing)
 D --> E{Summarization Flan-T5}
 D --> F{Named Entity Recognition BERT}
