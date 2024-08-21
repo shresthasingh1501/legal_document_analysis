@@ -27,7 +27,7 @@ This repository empowers you to effortlessly analyze legal documents using the c
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/your-username/legal_document_analysis.git
+   git clone https://github.com/shresthasingh1501/legal_document_analysis.git
    ```
 
 2. **Install Dependencies:**
@@ -58,6 +58,22 @@ This repository empowers you to effortlessly analyze legal documents using the c
 * **`samplepdfs/`:**  A directory to store your sample PDF files.
 * **`streamlit-ui.py`:** (Optional) A Streamlit-based UI for interactive analysis (implementation in progress).
 
+## Workflow
+
+Here's a visual representation of the workflow:
+
+```mermaid
+graph LR
+A[Input PDF Document] --> B(Text Extraction)
+B --> C{OCR (if needed)}
+C --> D(Text Preprocessing)
+D --> E{Summarization (Flan-T5)}
+D --> F{Named Entity Recognition (BERT)}
+E --> G[Summary Output]
+F --> H[Named Entities Output]
+```
+
+
 ## Unleash the Power of AI on Your Legal Documents Today!
 
 This repository provides a powerful toolkit for automating legal document analysis. Start exploring and discover the insights waiting to be uncovered!
@@ -65,6 +81,3 @@ This repository provides a powerful toolkit for automating legal document analys
 **Contributions are welcome!**  Feel free to open issues, suggest improvements, or submit pull requests.  Let's build a better future for legal analysis together.
 
 **Disclaimer:** This repository is for educational and research purposes.  It is not intended to provide legal advice.
-
-
-This enhanced README provides a much more informative and engaging introduction to the project, making it easier for users to understand its capabilities and get started. Remember to replace `your-username` with your actual GitHub username.
