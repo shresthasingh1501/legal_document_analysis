@@ -64,21 +64,13 @@ Here's a visual representation of the workflow:
 
 ```mermaid
 graph LR
-    A[Input PDF Document] --> B(Extract Text)
-    B --> C{Scanned Document?}
-    C -- Yes --> D[OCR]
-    C -- No --> E[Text Preprocessing]
-    D --> E
-    E --> F{Summarization Flan-T5}
-    E --> G{Named Entity Recognition BERT}
-    F --> H[Summary]
-    G --> I[Named Entities]
-
-    B -->|"Extract text from PDFs"| C
-    D -->|"Perform OCR on scanned documents"| E
-    E -->|"Preprocess text for summarization and NER"| F
-    F -->|"Generate summary of the document"| H
-    G -->|"Extract named entities from the document"| I
+A[Input PDF Document] --> B(Text Extraction)
+B --> C{OCR (if needed)}
+C --> D(Text Preprocessing)
+D --> E{Summarization Flan-T5}
+D --> F{Named Entity Recognition BERT}
+E --> G[Summary Output]
+F --> H[Named Entities Output]
 
 ```
 
