@@ -15,6 +15,12 @@ E --> G[Summary Output]
 F --> H[Named Entities Output]
 
 ```
+## Live Demo
+
+Try out the Legal Document Summarization model with our interactive demo hosted on Hugging Face Spaces:
+
+[![Hugging Face Spaces](https://img.shields.io/badge/Hugging%20Face-Spaces-blue)](https://shresthasingh-legal-doc-summarization.hf.space)
+
 
 ## Dive into the World of Automated Legal Insights!
 
