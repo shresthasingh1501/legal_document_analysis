@@ -69,7 +69,8 @@ graph LR
     C -- Yes --> D[OCR]
     C -- No --> E[Text Preprocessing]
     D --> E
-    E --> G{Named Entity Recognition (BERT)}
+    E --> F{Summarization Flan-T5}
+    E --> G{Named Entity Recognition BERT}
     F --> H[Summary]
     G --> I[Named Entities]
 
