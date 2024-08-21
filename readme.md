@@ -73,6 +73,13 @@ graph LR
     E --> G{Named Entity Recognition (BERT)}
     F --> H[Summary]
     G --> I[Named Entities]
+
+    B -->|"Extract text from PDFs"| C
+    D -->|"Perform OCR on scanned documents"| E
+    E -->|"Preprocess text for summarization and NER"| F
+    F -->|"Generate summary of the document"| H
+    G -->|"Extract named entities from the document"| I
+
 ```
 
 
